@@ -19,7 +19,7 @@ public class Main {
         long startTs = System.currentTimeMillis(); // start time
 
         List<Future<Integer>> futureList;
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
         futureList = executorService.invokeAll(Arrays.stream(texts).map(MyCallable::new).collect(Collectors.toList()));
         int max = 0;
         for (Future<Integer> future : futureList) {
